@@ -21,6 +21,10 @@ classifiers = [
 ]
 dependencies = []
 
+[project.urls]
+Homepage = "https://github.com/ourochronos/our-crypto"
+Repository = "https://github.com/ourochronos/our-crypto"
+
 [project.optional-dependencies]
 dev = [
     "pytest>=8.0",
