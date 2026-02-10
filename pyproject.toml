@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "oro-crypto"
 version = "0.1.0"
-description = "Proxy re-encryption, MLS messaging, and zero-knowledge proofs for the orobobos ecosystem"
+description = "Proxy re-encryption, MLS messaging, and zero-knowledge proofs for the ourochronos ecosystem"
 readme = "README.md"
 license = "MIT"
 requires-python = ">=3.11"

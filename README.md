@@ -1,6 +1,6 @@
 # oro-crypto
 
-Proxy re-encryption, MLS messaging, and zero-knowledge proofs for the orobobos ecosystem
+Proxy re-encryption, MLS messaging, and zero-knowledge proofs for the ourochronos ecosystem
 
 ## Overview
 

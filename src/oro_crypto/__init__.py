@@ -1,4 +1,4 @@
-"""oro-crypto -- Cryptographic primitives for the orobobos ecosystem.
+"""oro-crypto -- Cryptographic primitives for the ourochronos ecosystem.
 
 This module provides cryptographic abstractions including:
 - MLS (Messaging Layer Security) for group encryption
