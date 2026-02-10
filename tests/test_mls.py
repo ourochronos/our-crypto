@@ -7,7 +7,7 @@ from datetime import datetime
 
 import pytest
 
-from oro_crypto.mls import (
+from our_crypto.mls import (
     MLSBackend,
     MLSCommit,
     MLSEpochMismatchError,

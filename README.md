@@ -1,4 +1,4 @@
-# oro-crypto
+# our-crypto
 
 Proxy re-encryption, MLS messaging, and zero-knowledge proofs for the ourochronos ecosystem
 
@@ -9,13 +9,13 @@ _Brief description of what this brick does and why it exists._
 ## Install
 
 ```bash
-pip install oro-crypto
+pip install our-crypto
 ```
 
 ## Usage
 
 ```python
-from oro_crypto import ...
+from our_crypto import ...
 ```
 
 ## API

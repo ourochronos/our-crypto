@@ -14,7 +14,7 @@ concurrency:
 
 jobs:
   lint:
-    uses: ourochronos/oro-infra/.github/workflows/lint.yml@main
+    uses: ourochronos/our-infra/.github/workflows/lint.yml@main
   test:
     needs: lint
-    uses: ourochronos/oro-infra/.github/workflows/test.yml@main
+    uses: ourochronos/our-infra/.github/workflows/test.yml@main

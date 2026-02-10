@@ -8,7 +8,7 @@ from datetime import datetime, timedelta
 
 import pytest
 
-from oro_crypto.zkp import (
+from our_crypto.zkp import (
     ComplianceProof,
     # Types
     ComplianceProofType,

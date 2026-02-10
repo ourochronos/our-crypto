@@ -1,4 +1,4 @@
-"""Shared test fixtures for oro-crypto."""
+"""Shared test fixtures for our-crypto."""
 
 import pytest
 

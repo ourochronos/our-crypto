@@ -1,14 +1,14 @@
-"""oro-crypto -- Cryptographic primitives for the ourochronos ecosystem.
+"""Public interface for our-crypto.
 
-This module provides cryptographic abstractions including:
-- MLS (Messaging Layer Security) for group encryption
-- ZKP (Zero-Knowledge Proofs) for compliance verification
-- PRE (Proxy Re-Encryption) for federation aggregation
+This module re-exports the primary public API: abstract interfaces,
+core types, mock implementations, exceptions, and utility functions.
+
+Usage:
+    from our_crypto.interface import MLSBackend, PREBackend, ZKPBackend
+    from our_crypto.interface import MockMLSBackend, MockPREBackend, MockZKPBackend
 """
 
-__version__ = "0.1.0"
-
-from oro_crypto.mls import (
+from our_crypto.mls import (
     MLSBackend,
     MLSEpochMismatchError,
     MLSError,
@@ -19,64 +19,68 @@ from oro_crypto.mls import (
     MLSMemberNotFoundError,
     MockMLSBackend,
 )
-from oro_crypto.pre import (
-    # Mock implementation
+from our_crypto.pre import (
     MockPREBackend,
-    # Abstract interface
     PREBackend,
     PRECiphertext,
     PREDecryptionError,
     PREEncryptionError,
-    # Exceptions
     PREError,
     PREInvalidCiphertextError,
     PREKeyError,
     PREKeyPair,
     PREPrivateKey,
-    # Data classes
     PREPublicKey,
     PREReEncryptionError,
     ReEncryptionKey,
-    # Utilities
     create_mock_backend,
 )
-from oro_crypto.zkp import (
+from our_crypto.zkp import (
     ComplianceProof,
-    # Types
     ComplianceProofType,
     MockZKPBackend,
-    # Mock implementations
     MockZKPProver,
     MockZKPVerifier,
     PublicParameters,
     VerificationResult,
     ZKPBackend,
     ZKPCircuitNotFoundError,
-    # Exceptions
     ZKPError,
     ZKPInputError,
     ZKPInvalidProofError,
-    # Abstract interfaces
     ZKPProver,
     ZKPProvingError,
     ZKPVerificationError,
     ZKPVerifier,
-    # Utilities
     hash_public_inputs,
     verify_proof,
 )
 
 __all__ = [
-    # MLS
+    # MLS Interfaces
+    "MLSBackend",
+    "MockMLSBackend",
+    # MLS Types
     "MLSGroup",
     "MLSMember",
     "MLSKeySchedule",
-    "MLSBackend",
-    "MockMLSBackend",
+    # MLS Exceptions
     "MLSError",
     "MLSGroupNotFoundError",
     "MLSMemberNotFoundError",
     "MLSEpochMismatchError",
+    # ZKP Interfaces
+    "ZKPProver",
+    "ZKPVerifier",
+    "ZKPBackend",
+    "MockZKPProver",
+    "MockZKPVerifier",
+    "MockZKPBackend",
+    # ZKP Types
+    "ComplianceProofType",
+    "PublicParameters",
+    "ComplianceProof",
+    "VerificationResult",
     # ZKP Exceptions
     "ZKPError",
     "ZKPInvalidProofError",
@@ -84,22 +88,18 @@ __all__ = [
     "ZKPProvingError",
     "ZKPVerificationError",
     "ZKPInputError",
-    # ZKP Types
-    "ComplianceProofType",
-    "PublicParameters",
-    "ComplianceProof",
-    "VerificationResult",
-    # ZKP Interfaces
-    "ZKPProver",
-    "ZKPVerifier",
-    "ZKPBackend",
-    # ZKP Mock Implementations
-    "MockZKPProver",
-    "MockZKPVerifier",
-    "MockZKPBackend",
     # ZKP Utilities
     "hash_public_inputs",
     "verify_proof",
+    # PRE Interfaces
+    "PREBackend",
+    "MockPREBackend",
+    # PRE Types
+    "PREPublicKey",
+    "PREPrivateKey",
+    "PREKeyPair",
+    "ReEncryptionKey",
+    "PRECiphertext",
     # PRE Exceptions
     "PREError",
     "PREKeyError",
@@ -107,16 +107,6 @@ __all__ = [
     "PREDecryptionError",
     "PREReEncryptionError",
     "PREInvalidCiphertextError",
-    # PRE Data Classes
-    "PREPublicKey",
-    "PREPrivateKey",
-    "PREKeyPair",
-    "ReEncryptionKey",
-    "PRECiphertext",
-    # PRE Interfaces
-    "PREBackend",
-    # PRE Mock Implementation
-    "MockPREBackend",
     # PRE Utilities
     "create_mock_backend",
 ]
