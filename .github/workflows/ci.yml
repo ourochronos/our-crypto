@@ -22,5 +22,4 @@ jobs:
   release:
     needs: test
     uses: ourochronos/our-infra/.github/workflows/release.yml@main
-    secrets:
-      PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
+    secrets: inherit
