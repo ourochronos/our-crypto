@@ -4,7 +4,6 @@ on:
   pull_request:
   push:
     branches: [main]
-    tags: ['v*']
     paths-ignore:
       - '*.md'
       - 'docs/**'
@@ -19,7 +18,3 @@ jobs:
   test:
     needs: lint
     uses: ourochronos/our-infra/.github/workflows/test.yml@main
-  release:
-    needs: test
-    uses: ourochronos/our-infra/.github/workflows/release.yml@main
-    secrets: inherit
