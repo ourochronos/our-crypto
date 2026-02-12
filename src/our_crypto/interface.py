@@ -1,13 +1,16 @@
 """Public interface for our-crypto.
 
 This module re-exports the primary public API: abstract interfaces,
-core types, mock implementations, exceptions, and utility functions.
+core types, mock implementations, real implementations, exceptions,
+factory functions, and utility functions.
 
 Usage:
     from our_crypto.interface import MLSBackend, PREBackend, ZKPBackend
     from our_crypto.interface import MockMLSBackend, MockPREBackend, MockZKPBackend
+    from our_crypto.interface import create_pre_backend, create_mls_backend, create_zkp_backend
 """
 
+from our_crypto import create_mls_backend, create_pre_backend, create_zkp_backend
 from our_crypto.mls import (
     MLSBackend,
     MLSEpochMismatchError,
@@ -19,6 +22,7 @@ from our_crypto.mls import (
     MLSMemberNotFoundError,
     MockMLSBackend,
 )
+from our_crypto.mls_real import HKDFMLSBackend
 from our_crypto.pre import (
     MockPREBackend,
     PREBackend,
@@ -35,6 +39,7 @@ from our_crypto.pre import (
     ReEncryptionKey,
     create_mock_backend,
 )
+from our_crypto.pre_real import X25519PREBackend
 from our_crypto.zkp import (
     ComplianceProof,
     ComplianceProofType,
@@ -55,11 +60,13 @@ from our_crypto.zkp import (
     hash_public_inputs,
     verify_proof,
 )
+from our_crypto.zkp_real import SigmaZKPBackend, SigmaZKPProver, SigmaZKPVerifier
 
 __all__ = [
     # MLS Interfaces
     "MLSBackend",
     "MockMLSBackend",
+    "HKDFMLSBackend",
     # MLS Types
     "MLSGroup",
     "MLSMember",
@@ -76,6 +83,9 @@ __all__ = [
     "MockZKPProver",
     "MockZKPVerifier",
     "MockZKPBackend",
+    "SigmaZKPProver",
+    "SigmaZKPVerifier",
+    "SigmaZKPBackend",
     # ZKP Types
     "ComplianceProofType",
     "PublicParameters",
@@ -94,6 +104,7 @@ __all__ = [
     # PRE Interfaces
     "PREBackend",
     "MockPREBackend",
+    "X25519PREBackend",
     # PRE Types
     "PREPublicKey",
     "PREPrivateKey",
@@ -109,4 +120,8 @@ __all__ = [
     "PREInvalidCiphertextError",
     # PRE Utilities
     "create_mock_backend",
+    # Factory Functions
+    "create_pre_backend",
+    "create_mls_backend",
+    "create_zkp_backend",
 ]

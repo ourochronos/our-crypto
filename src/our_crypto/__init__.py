@@ -4,7 +4,14 @@ This module provides cryptographic abstractions including:
 - MLS (Messaging Layer Security) for group encryption
 - ZKP (Zero-Knowledge Proofs) for compliance verification
 - PRE (Proxy Re-Encryption) for federation aggregation
+
+Each primitive has a mock backend (for testing) and a real backend
+(using the `cryptography` library for actual crypto operations).
 """
+
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
 
 __version__ = "0.1.0"
 
@@ -66,6 +73,76 @@ from our_crypto.zkp import (
     verify_proof,
 )
 
+if TYPE_CHECKING:
+    from our_crypto.mls_real import HKDFMLSBackend as HKDFMLSBackend
+    from our_crypto.pre_real import X25519PREBackend as X25519PREBackend
+    from our_crypto.zkp_real import SigmaZKPBackend as SigmaZKPBackend
+    from our_crypto.zkp_real import SigmaZKPProver as SigmaZKPProver
+    from our_crypto.zkp_real import SigmaZKPVerifier as SigmaZKPVerifier
+
+
+# =============================================================================
+# Factory Functions (lazy imports for real backends)
+# =============================================================================
+
+
+def create_pre_backend(backend: str = "mock") -> PREBackend:
+    """Create a PRE backend.
+
+    Args:
+        backend: "mock" for testing, "x25519" for real crypto
+
+    Returns:
+        PREBackend instance
+    """
+    if backend == "mock":
+        return MockPREBackend()
+    elif backend == "x25519":
+        from our_crypto.pre_real import X25519PREBackend
+
+        return X25519PREBackend()
+    else:
+        raise ValueError(f"Unknown PRE backend: {backend!r}. Use 'mock' or 'x25519'.")
+
+
+def create_mls_backend(backend: str = "mock") -> MLSBackend:
+    """Create an MLS backend.
+
+    Args:
+        backend: "mock" for testing, "hkdf" for real crypto
+
+    Returns:
+        MLSBackend instance
+    """
+    if backend == "mock":
+        return MockMLSBackend()
+    elif backend == "hkdf":
+        from our_crypto.mls_real import HKDFMLSBackend
+
+        return HKDFMLSBackend()
+    else:
+        raise ValueError(f"Unknown MLS backend: {backend!r}. Use 'mock' or 'hkdf'.")
+
+
+def create_zkp_backend(backend: str = "mock") -> ZKPBackend:
+    """Create a ZKP backend.
+
+    Args:
+        backend: "mock" for testing, "sigma" for real crypto
+
+    Returns:
+        ZKPBackend instance
+    """
+    if backend == "mock":
+        return MockZKPBackend()
+    elif backend == "sigma":
+        from our_crypto.zkp_real import SigmaZKPBackend
+
+        return SigmaZKPBackend()
+    else:
+        raise ValueError(f"Unknown ZKP backend: {backend!r}. Use 'mock' or 'sigma'.")
+
+
 __all__ = [
     # MLS
     "MLSGroup",
@@ -119,4 +196,8 @@ __all__ = [
     "MockPREBackend",
     # PRE Utilities
     "create_mock_backend",
+    # Factory Functions
+    "create_pre_backend",
+    "create_mls_backend",
+    "create_zkp_backend",
 ]
