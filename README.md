@@ -1,3 +1,10 @@
+# ⚠️ DEPRECATED
+
+This library was part of the Ourochronos brick system. It has been removed as a dependency and is no longer maintained.
+This repo is archived for reference only.
+
+---
+
 # our-crypto
 
 Cryptographic abstractions for proxy re-encryption, MLS group messaging, and zero-knowledge proofs in the ourochronos ecosystem.
